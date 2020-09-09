@@ -1,4 +1,4 @@
 # holberton-system_engineering-devops
 Second repository 
-@## Maintainer
+## Maintainer
 [@wisvem](https://github.com/wisvem)
