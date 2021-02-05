@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#Print 12 hours 59 minutes
+x=0
+m=1
+while [ $x -le 12 ]
+do
+	echo "Hour: "$x
+	((m=1))
+	while [ $m -le 59 ]
+	do
+		echo $m
+		((m=m+1))
+	done
+	((x=x+1))
+done

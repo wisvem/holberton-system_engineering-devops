@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#Print 10 times Holberton School with while
+x=1
+while [ $x -le 10 ]
+do
+	if [ $x != 9 ]
+	then
+        	echo "Holberton School"
+	else
+		echo "Hi"
+	fi
+	x=$(( $x + 1 ))
+done
