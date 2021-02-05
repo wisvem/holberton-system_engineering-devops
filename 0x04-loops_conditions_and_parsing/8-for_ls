@@ -3,8 +3,7 @@
 #The content of the current directory
 #In a list format
 #Where only the part of the name after the first dash is displayed
-for entry in "$search_dir"./*
+for file in *
 do
-	name=${entry##*-}
-	echo "$name"
+	echo "${file##*-}"
 done
