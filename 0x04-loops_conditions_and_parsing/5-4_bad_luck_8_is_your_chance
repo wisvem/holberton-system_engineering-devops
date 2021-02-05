@@ -10,7 +10,7 @@ do
 	then
                 echo "good luck"
 	else
-		echo "HolbertonSchool"
+		echo "Holberton School"
 	fi
 	((x=x+1))
 done
