@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Bash script story of the passwd
+awk '{print $1, $9}' apache-access.log
