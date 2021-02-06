@@ -3,5 +3,5 @@
 input="/etc/passwd"
 while IFS= read -r line
 do
-	echo "$line" | cut -d":" -f 1,3,6 
+	echo "$line" | cut -d':' -f 1,3,6 
 done < "$input"
