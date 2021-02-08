@@ -26,7 +26,6 @@ start) start ;;
 stop) stop ;;
 restart) restart ;;
 *)
-	echo "Usage: manage_my_process {start|stop|restart}" >&2
-	exit 1
+	echo "Usage: manage_my_process {start|stop|restart}"
 	;;
 esac
