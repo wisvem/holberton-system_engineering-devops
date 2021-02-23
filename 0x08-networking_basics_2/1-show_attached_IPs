@@ -1,0 +1,3 @@
+#!/bin/bash bash
+# task 1 see attached ip addresses
+ifconfig | grep "inet addr" | cut -d':' -f2 | cut -d" " -f1
