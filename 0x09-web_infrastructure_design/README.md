@@ -29,3 +29,6 @@ You must add to [2-secured_and_monitored_web_infrastructure](2-secured_and_monit
 - 1 physical server
 - 1 load-balancer (HAproxy) configured as cluster with the other one
 - Split components (web server, application server, database) with their own server
+
+## Contributors
+[wisvem](https://github.com/wisvem)
