@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+# Use a private key
 ssh -i ~/.ssh/holberton ubuntu@104.196.30.252
