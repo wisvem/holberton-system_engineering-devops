@@ -1,15 +1,15 @@
 # Config file
 exec { 'update':
-    command => '/usr/bin/apt-get update -y'
+    command => 'sudo /usr/bin/apt-get update -y'
 }
 exec { 'install-nginx':
-    command => '/usr/bin/apt-get install -y'
+    command => 'sudo /usr/bin/apt-get install -y'
 }
 exec { 'echo-holb':
-    command => '/bin/echo Holberton School > /var/www/html/index.nginx-debian.html'
+    command => 'sudo /bin/echo Holberton School > /var/www/html/index.nginx-debian.html'
 }
 exec { 'echo-404':
-    command => '/bin/echo Ceci n\'est pas une page > /var/www/html/404.html'
+    command => 'sudo /bin/echo Ceci n\'est pas une page > /var/www/html/404.html'
 }
 $my_string = "\\\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
 $myfile = '/etc/nginx/sites-available/default'
