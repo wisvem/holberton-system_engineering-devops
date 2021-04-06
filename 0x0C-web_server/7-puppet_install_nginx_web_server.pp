@@ -27,7 +27,7 @@ file_line {'redirect':
     match   => $error404,
     path    => $myfile,
     line    => $error404,
-    after => 'server_name _;'
+    after   => 'server_name _;'
     replace => false
 }
 
