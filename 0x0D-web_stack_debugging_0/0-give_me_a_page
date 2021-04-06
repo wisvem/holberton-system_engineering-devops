@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo Holberton School > /var/www/html/index.html
+service apache2 start

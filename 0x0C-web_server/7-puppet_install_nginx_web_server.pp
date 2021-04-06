@@ -1,38 +1,25 @@
-# Config file
-exec { 'update':
-    command => 'sudo /usr/bin/apt-get update -y'
-}
-exec { 'install-nginx':
-    command => 'sudo /usr/bin/apt-get install -y'
-}
-exec { 'echo-holb':
-    command => 'sudo /bin/echo Holberton School > /var/www/html/index.nginx-debian.html'
-}
-exec { 'echo-404':
-    command => 'sudo /bin/echo Ceci n\'est pas une page > /var/www/html/404.html'
-}
-$my_string = "\\\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
-$myfile = '/etc/nginx/sites-available/default'
-$error404="\\\n\terror_page 404 /404.html;\n\tlocation /404.html {\n\t\tinternal;\n\t}\n";
+# Manifest to configure an Ubuntu server with nginx
 
-file_line {'redirect':
-    match   => $my_string,
-    path    => $myfile,
-    line    => $my_string,
-    after   => 'server_name _;'
-    replace => false
+package { 'nginx':
+  ensure   => present,
+  provider => 'apt'
 }
 
-file_line {'redirect':
-    match   => $error404,
-    path    => $myfile,
-    line    => $error404,
-    after   => 'server_name _;'
-    replace => false
+file { '/var/www/html/index.html':
+  ensure  => present,
+  content => 'Holberton School'
+}
+
+file_line { 'Redirection':
+  ensure => present,
+  path   => '/etc/nginx/sites-available/default',
+  after  => 'listen 80 default_server;',
+  line   => '        rewrite ^/redirect_me https://www.youtube.com/watch?v=dQw4w9WgXcQ permanent;'
 }
 
 service { 'nginx':
-    ensure  => running,
-    enable  => true,
-    require => Package['nginx'],
+  ensure    => running,
+  enable    => true,
+  require   => Package['nginx'],
+  subscribe => File_line['Redirection']
 }
