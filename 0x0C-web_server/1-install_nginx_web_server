@@ -2,5 +2,5 @@
 # Install nginx an create a default page
 apt-get update -y
 apt-get install nginx -y
-echo Holberton School > /var/www/html/index.html
+echo "Holberton School" > /var/www/html/index.html
 service nginx start
