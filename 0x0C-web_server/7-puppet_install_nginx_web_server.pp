@@ -19,6 +19,7 @@ file_line {'redirect':
     match   => $my_string,
     path    => $myfile,
     line    => $my_string,
+    after   => 'server_name _;'
     replace => false
 }
 
@@ -26,9 +27,12 @@ file_line {'redirect':
     match   => $error404,
     path    => $myfile,
     line    => $error404,
+    after => 'server_name _;'
     replace => false
 }
 
-exec { 'Start-nginx':
-    command => 'sudo service /usr/sbin/nginx start'
+service { 'nginx':
+    ensure  => running,
+    enable  => true,
+    require => Package['nginx'],
 }
