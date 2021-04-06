@@ -28,3 +28,7 @@ file_line {'redirect':
     line    => $error404,
     replace => false
 }
+
+exec { 'Start-nginx':
+    command => 'sudo service /usr/sbin/nginx start'
+}
