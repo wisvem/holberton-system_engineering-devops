@@ -6,7 +6,14 @@ echo Holberton School > /var/www/html/index.nginx-debian.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 my_string="\\\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
 FILE=/etc/nginx/sites-available/default
-grep -q "$my_string" "$FILE" || sed -i "48 a $my_string" "$FILE"
+result=$(grep "$my_string" "$FILE")
+if [ -z "$result" ]; then
+    sed -i "48 a $my_string" "$FILE"
+fi
 error404="\\\n\terror_page 404 /404.html;\n\tlocation /404.html {\n\t\tinternal;\n\t}\n";
-grep -q "$error404" "$FILE" || sed -i "48 a $error404" "$FILE"
+result=$(grep "$error404" "$FILE")
+result=$(grep "$my_string" "$FILE")
+if [ -z "$result" ]; then
+    sed -i "48 a $error404" "$FILE"
+fi
 service nginx start
