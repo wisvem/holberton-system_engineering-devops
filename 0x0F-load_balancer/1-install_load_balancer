@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# 1. Install your load balancer
+apt-get update -y
+apt-get install haproxy -y
+FILE=/etc/haproxy/haproxy.cfg
+my_string="backend webapps\n\t\tbalance roundrobin\n\t\tserver  ws01   104.196.30.252:80 check\n\t\tserver  ws02   135.185.6.249:80 check"
+result=$(grep "$my_string" "$FILE")
+if [ -z "$result" ]; then
+    echo -e "$my_string" >> "$FILE"
+fi
+service haproxy start
+my_string="ENABLED=1"
+FILE=/etc/default/haproxy
+result=$(grep "$my_string" "$FILE")
+if [ -z "$result" ]; then
+    echo -e "$my_string" >> "$FILE"
+fi
