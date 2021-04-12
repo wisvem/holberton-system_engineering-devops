@@ -17,12 +17,10 @@ result=$(grep "$my_string" "$FILE")
 if [ -z "$result" ]; then
     echo -e "$my_string" >>"$FILE"
 fi
-service haproxy start
-
 my_string="ENABLED=1"
 FILE=/etc/default/haproxy
 result=$(grep "$my_string" "$FILE")
 if [ -z "$result" ]; then
-    echo -e "$my_string" >>"$FILE"
+    echo "$my_string" >>"$FILE"
 fi
-service haproxy reload
+service haproxy start
