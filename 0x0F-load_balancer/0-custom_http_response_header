@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# 0. Double the number of webservers
+my_string="add_header X-Served-By \$HOSTNAME;"
+FILE=/etc/nginx/sites-available/default
+result=$(grep "$my_string" "$FILE")
+if [ -z "$result" ]; then
+    sed -i "48 a $my_string" "$FILE"
+fi
+service nginx reload
