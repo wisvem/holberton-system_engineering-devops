@@ -14,10 +14,8 @@ package { 'haproxy':
 }
 ->
 
-$my_string = "add_header X-Served-By \$HOSTNAME;"
-$my_file = '/etc/haproxy/haproxy.cfg'
 exec { 'Addd header':
-  command  => "echo -e add_header X-Served-By \$HOSTNAME; >>/etc/haproxy/haproxy.cfg",
+  command  => 'sed -i "48 a \tadd_header X-Served-By \$HOSTNAME;" /etc/haproxy/haproxy.cfg',
   user     => 'root',
   provider => 'shell'
 }
