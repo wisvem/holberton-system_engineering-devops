@@ -4,15 +4,7 @@ apt-get update -y
 apt-get install haproxy -y
 
 FILE=/etc/haproxy/haproxy.cfg
-my_string="frontend haproxynode
-        bind *:80
-        mode http
-        default_backend backendnodes
-
-backend backendnodes
-        balance roundrobin
-        server  ws01   104.196.30.252:80 check
-        server  ws02   135.185.6.249:80 check"
+my_string="\nfrontend haproxynode\n\tbind *:80\n\tmode http\n\tdefault_backend backendnodes\n\nbackend backendnodes\n\tbalance roundrobin\n\tserver  ws01   104.196.30.252:80 check\n\tserver  ws02   35.185.6.249:80 check"
 result=$(grep "$my_string" "$FILE")
 if [ -z "$result" ]; then
     echo -e "$my_string" >>"$FILE"
