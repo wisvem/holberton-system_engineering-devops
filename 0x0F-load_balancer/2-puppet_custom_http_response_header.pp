@@ -6,23 +6,23 @@ exec { 'update':
 }
 ->
 
-# Installs the haproxy package using apt.
-package { 'haproxy':
+# Installs the nginx package using apt.
+package { 'nginx':
   ensure   => present,
-  name     => 'haproxy',
+  name     => 'nginx',
   provider => 'apt'
 }
 ->
 
 exec { 'Addd header':
-  command  => 'sed -i "48i add_header X-Served-By \$HOSTNAME;" /etc/haproxy/haproxy.cfg',
+  command  => 'sed -i "48i add_header X-Served-By \$HOSTNAME;" /etc/nginx/sites-available/default',
   user     => 'root',
   provider => 'shell'
 }
 
 ->
-exec { 'Start haproxy':
-  command  => 'service haproxy restart',
+exec { 'Start nginx':
+  command  => 'service nginx restart',
   user     => 'root',
   provider => 'shell'
 }
