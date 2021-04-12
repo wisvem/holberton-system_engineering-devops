@@ -15,3 +15,4 @@ result=$(grep "$my_string" "$FILE")
 if [ -z "$result" ]; then
     echo -e "$my_string" >> "$FILE"
 fi
+service haproxy reload
