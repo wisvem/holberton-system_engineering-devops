@@ -2,17 +2,27 @@
 # 1. Install your load balancer
 apt-get update -y
 apt-get install haproxy -y
+
 FILE=/etc/haproxy/haproxy.cfg
-my_string="\t\tbalance roundrobin\n\t\tserver  ws01   104.196.30.252:80 check\n\t\tserver  ws02   135.185.6.249:80 check"
+my_string="frontend haproxynode
+        bind *:80
+        mode http
+        default_backend backendnodes
+
+backend backendnodes
+        balance roundrobin
+        server  ws01   104.196.30.252:80 check
+        server  ws02   135.185.6.249:80 check"
 result=$(grep "$my_string" "$FILE")
 if [ -z "$result" ]; then
-    echo -e "$my_string" >> "$FILE"
+    echo -e "$my_string" >>"$FILE"
 fi
 service haproxy start
+
 my_string="ENABLED=1"
 FILE=/etc/default/haproxy
 result=$(grep "$my_string" "$FILE")
 if [ -z "$result" ]; then
-    echo -e "$my_string" >> "$FILE"
+    echo -e "$my_string" >>"$FILE"
 fi
 service haproxy reload
