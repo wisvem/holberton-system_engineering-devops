@@ -39,7 +39,7 @@ frontend ssl_443
         reqadd X-Forwarded-Proto:\ https
         default_backend backendnodes
 
-frontend haproxynode
+frontend wisvem.tech
         bind *:80
         redirect scheme https code 301 if !{ ssl_fc }
         reqadd X-Forwarded-Proto:\ http
@@ -48,5 +48,5 @@ frontend haproxynode
 backend backendnodes
         balance roundrobin
         redirect scheme https if !{ ssl_fc }
-        server  ws01   104.196.30.252:80 check
-        server  ws02   35.185.6.249:80 check
+        server ws01 104.196.30.252:80 check
+        server ws02 35.185.6.249:80 check

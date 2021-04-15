@@ -34,19 +34,19 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend haproxynode
+frontend ssl_443
+        bind *:443 ssl crt /etc/haproxy/cert/fullkey.pem
+        reqadd X-Forwarded-Proto:\ https
+        default_backend backendnodes
+
+frontend wisvem.tech
         bind *:80
         redirect scheme https code 301 if !{ ssl_fc }
         reqadd X-Forwarded-Proto:\ http
         default_backend backendnodes
 
-frontend ssl_443
-        bind *:443 ssl crt /etc/haproxy/cert/
-        reqadd X-Forwarded-Proto:\ https
-        default_backend backendnodes
-
 backend backendnodes
         balance roundrobin
         redirect scheme https if !{ ssl_fc }
-        server  ws01   104.196.30.252:80 check
-        server  ws02   35.185.6.249:80 check
+        server ws01 104.196.30.252:80 check
+        server ws02 35.185.6.249:80 check
