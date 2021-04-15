@@ -37,15 +37,15 @@ defaults
 frontend ssl_443
         bind *:443 ssl crt /etc/haproxy/cert/fullkey.pem
         reqadd X-Forwarded-Proto:\ https
-        default_backend backendnodes
+        default_backend web-servers
 
 frontend wisvem.tech
         bind *:80
-        redirect scheme https code 301 if !{ ssl_fc }
         reqadd X-Forwarded-Proto:\ http
-        default_backend backendnodes
+        redirect scheme https code 301 if !{ ssl_fc }
+        default_backend web-servers
 
-backend backendnodes
+backend web-servers
         balance roundrobin
         redirect scheme https if !{ ssl_fc }
         server ws01 104.196.30.252:80 check
