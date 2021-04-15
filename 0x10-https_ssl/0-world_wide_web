@@ -1,2 +1,19 @@
 #!/usr/bin/env bash
 # TASK 0
+dns () {
+    r1=$(dig "$2" | grep -A1 'ANSWER SECTION:' | awk 'NR==2 {print $0}')
+    r2=$(echo "$r1" | awk '{print $4}')
+    r3=$(echo "$r1" | awk '{print $5}')
+    echo "The subdomain $1 is a $r2 record and points to $r3"
+}
+
+if [[ $# == 1 ]]; then
+    subdomains=('www' 'lb-01' 'web-01' 'web-02')
+    for i in "${subdomains[@]}"; do
+	my_str="$i.$1"
+	dns "$i" "$my_str"
+    done
+else
+    my_str="$2.$1"
+    dns "$2" "$my_str"
+fi
