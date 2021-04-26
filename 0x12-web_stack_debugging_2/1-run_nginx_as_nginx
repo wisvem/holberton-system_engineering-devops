@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# 1. Run Nginx as Nginx
+chmod --reference=/etc/nginx/proxy_params /etc/nginx/nginx.conf
+sudo -u nginx service nginx start
