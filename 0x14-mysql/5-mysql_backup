@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# 5. MySQL backup
+mysqldump --all-databases --master-data > backup.sql -uroot -p$1
+actual_date=$(date +"%d-%m-%Y")
+tar -czf "$actual_date".tar.gz backup.sql
