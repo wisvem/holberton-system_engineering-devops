@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 7 lines or less
-pkill apache
-sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+pkill -f apache2
+sed -i "s/80/8080/" /etc/nginx/sites-enabled/default
 chmod --reference=/etc/nginx/proxy_params /etc/nginx/nginx.conf
 sudo -u nginx service nginx start
