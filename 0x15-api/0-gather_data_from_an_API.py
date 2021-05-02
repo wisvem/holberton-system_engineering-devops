@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-""" Task 0 """
-import requests
+""" 0. Gather data from an API """
 from sys import argv
+import requests
 
 
 url_todo = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(
