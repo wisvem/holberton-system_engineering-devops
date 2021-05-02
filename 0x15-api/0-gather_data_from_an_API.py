@@ -25,4 +25,4 @@ td = "{}/{}".format(done_count, task_count)
 
 print("Employee {} is donde with tasks ({}):".format(user_name, td))
 for task in done_list:
-    print('\t{}'.format(task))
+    print('\t {}'.format(task))
