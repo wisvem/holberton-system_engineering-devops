@@ -17,9 +17,8 @@ if __name__ == "__main__":
     for i in todo_json:
         tmp = "\"{}\",\"{}\",\"{}\",\"{}\"\n".format(
             i.get('userId'), username, i.get('completed'), i.get('title'))
-        print(tmp)
         task_list.append(tmp)
 
-    with open('USER_ID.csv', 'w') as f:
+    with open('{}.csv'.format(argv[1]), 'w') as f:
         for i in task_list:
             f.writelines(i)
