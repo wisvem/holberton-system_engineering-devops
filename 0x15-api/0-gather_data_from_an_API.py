@@ -23,6 +23,6 @@ if __name__ == "__main__":
 
     td = "{}/{}".format(done_count, task_count)
 
-    print("Employee {} is donde with tasks ({}):".format(user_name, td))
+    print("Employee {} is done with tasks ({}):".format(user_name, td))
     for task in done_list:
         print('\t {}'.format(task))
