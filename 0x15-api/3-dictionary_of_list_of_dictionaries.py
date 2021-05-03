@@ -12,8 +12,8 @@ if __name__ == "__main__":
     for i in users_response:
         user_id = i.get('id')
         username = i.get('username')
-        url_todo = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(
-            user_id)
+        url_todo = 'https://jsonplaceholder.typicode.com/users/{}/todos'\
+            .format(user_id)
         todo_response = requests.get(url_todo)
         todo_json = todo_response.json()
 
