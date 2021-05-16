@@ -16,6 +16,11 @@ def validate_word_dict(word_dict, word_list):
 
 def count_words(subreddit, word_list):
     """Count words main function"""
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(
+        subreddit)
+    response = get(url, headers=headers, allow_redirects=False)
+    if response.status_code is not 200:
+        return None
     result = recursive_count(subreddit, word_list, '', {})
     for k, v in sorted(result.items(), key=lambda x: (-x[1], x[0])):
         if v is not 0:
