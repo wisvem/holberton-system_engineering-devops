@@ -15,6 +15,7 @@ def validate_word_dict(word_dict, word_list):
 
 
 def count_words(subreddit, word_list):
+    """Count words main function"""
     result = recursive_count(subreddit, word_list, '', {})
     for k, v in sorted(result.items(), key=lambda x: (-x[1], x[0])):
         if v is not 0:
