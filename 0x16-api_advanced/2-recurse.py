@@ -13,7 +13,7 @@ def recurse(subreddit, hot_list=[], after=""):
         subreddit, after)
     response = get(url, headers=headers, allow_redirects=False)
     if response.status_code is not 200:
-        return hot_list
+        return None
     r = response.json()
     data = r.get('data')
     children = data['children']
