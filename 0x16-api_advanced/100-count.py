@@ -40,10 +40,10 @@ def recursive_count(subreddit, word_list, after='', word_dict={}):
         title_list.append(children[i].get('data')['title'].lower())
 
     for title in title_list:
-        for key in word_dict.keys():
+        for key in word_list:
             for x in title.split(' '):
-                if key == x:
-                    word_dict[key] += 1
+                if key.lower() == x.lower():
+                    word_dict[key.lower()] += 1
 
     after = data['after']
     if after is not None:
