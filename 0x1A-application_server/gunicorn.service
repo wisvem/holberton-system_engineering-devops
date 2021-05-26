@@ -1,5 +1,7 @@
 [Unit]
 Description=Gunicorn instance
+# Start when network and syslog are available
+After=syslog.target
 After=network.target
 [Service]
 User=root
